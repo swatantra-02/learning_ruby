@@ -1,11 +1,12 @@
 class ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
-        if @article.errors.any?
-            render json: @article.errors.full_messages
-        else 
-            render json: @article
-        end
+        render json: @article
+        # if @article.errors.any?
+        #     render json: @article.errors.full_messages
+        # else 
+        #     render json: @article
+        # end
     end
     def index
         @articles = Article.all
@@ -26,6 +27,7 @@ class ArticlesController < ApplicationController
     end
     def edit
         @article = Article.find(params[:id])
+        render json: @article
     end
     def update
         @article = Article.find(params[:id])
@@ -40,6 +42,7 @@ class ArticlesController < ApplicationController
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
-        redirect_to articles_path
+        # redirect_to articles_path
+        render json: @article
     end
 end
